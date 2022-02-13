@@ -1,0 +1,9 @@
+FROM ubuntu:latest 
+WORKDIR /jmapp
+
+RUN apt-get update && apt install sudo -y && apt install wget -y \
+&& sudo apt install openjdk-11-jdk-headless -y  \
+&& JAVA_HOME='/opt/jdk-13.0.1' && PATH="$JAVA_HOME/bin:$PATH" && \
+export PATH
+
+RUN ./mvnw package && java -jar target/*.jar
