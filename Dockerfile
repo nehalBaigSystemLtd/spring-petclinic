@@ -1,4 +1,5 @@
-FROM ubuntu:latest 
+FROM ubuntu:latest
+COPY . /jmapp
 WORKDIR /jmapp
 EXPOSE 8080
 RUN apt-get update && apt install sudo -y && apt install wget -y \
@@ -11,6 +12,3 @@ export PATH && java --version \
 && export PATH && mvn -version
 RUN gedit ~/.bashrc
 RUN ls -lat && mvn -version
-COPY . /jmapp
-
-RUN ls -lat && mvn -version 
