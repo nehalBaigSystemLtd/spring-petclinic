@@ -1,0 +1,8 @@
+version: '3'
+services:
+  maven:
+    build: .
+    volumes:
+      - '.:/jmapp'
+    ports:
+      - '8080:8080'
