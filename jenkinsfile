@@ -24,7 +24,7 @@ pipeline {
       stage("deploy"){
           steps {
                 sshagent(['7d94bfc0-245f-4637-a3da-dbae19921747']) {
-                    sh 'ssh -o StrictHostKeyChecking=no -l mrzjordan 182.176.114.79 "pwd;npm -v; cd ~/SystemLtd-Form;ls -lat;rm -rf node_modules;ls -lat;git pull origin qa;ls -lat;npm install --only=production;ls -lat;docker-compose restart node"'
+                    //sh 'ssh -o StrictHostKeyChecking=no -l mrzjordan 182.176.114.79 "pwd;npm -v; cd ~/SystemLtd-Form;ls -lat;rm -rf node_modules;ls -lat;git pull origin qa;ls -lat;npm install --only=production;ls -lat;docker-compose restart node"'
                 }  
             }
       
