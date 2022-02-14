@@ -7,7 +7,7 @@ pipeline {
     stages{
       stage("SCM"){
           steps {
-             git(branch: 'qa', credentialsId: '44feaac4-248a-4a31-bdfc-dc372382fbb1', url: 'https://github.com/nehalBaigSystemLtd/spring-petclinic')
+             git(branch: 'main', credentialsId: '44feaac4-248a-4a31-bdfc-dc372382fbb1', url: 'https://github.com/nehalBaigSystemLtd/spring-petclinic')
              sh 'ls -lrt'
           }
       }
