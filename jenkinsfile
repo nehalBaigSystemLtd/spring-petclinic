@@ -18,7 +18,7 @@ pipeline {
       }
       stage("test"){
           steps {
-            sh 'mvn test surefire-report:report;ls -lat;ls target/surefire-reports/ -lat;'
+            sh 'mvn test surefire-report:report;ls -lat target/surefire-reports/;ls target/surefire-reports/ -lat;'
           }
       }
       stage("deploy"){
