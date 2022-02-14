@@ -18,16 +18,21 @@ pipeline {
       }
       stage("test"){
           steps {
-            sh 'mvn test surefire-report:report;ls target/surefire-reports/ -lat;'
+            sh 'mvn test surefire-report:report;ls target/site -lat;'
           }
       }
       stage("deploy"){
           steps {
                 sshagent(['7d94bfc0-245f-4637-a3da-dbae19921747']) {
-                    //sh 'ssh -o StrictHostKeyChecking=no -l mrzjordan 182.176.114.79 "pwd;npm -v; cd ~/SystemLtd-Form;ls -lat;rm -rf node_modules;ls -lat;git pull origin qa;ls -lat;npm install --only=production;ls -lat;docker-compose restart node"'
+                    sh 'ssh -o StrictHostKeyChecking=no -l mrzjordan 182.176.114.79 "pwd;maven --version; cd ~/spring-petclinic;ls -lat;rm -rf target;ls -lat;git pull;ls -lat;mvn package;ls -lat;docker-compose restart maven"'
                 }  
            }
       }    
    }
+    post{
+        success{
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './target/site/', reportFiles: 'surefire-report.html', reportName: 'Unit Test Report', reportTitles: 'Unit Test Report'])
+        }
+     }
 }
 
