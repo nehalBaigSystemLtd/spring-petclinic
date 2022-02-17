@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven "maven-jenkins"
+        gradle "gradle-jenkins"
     }
     
     stages{
@@ -13,25 +13,25 @@ pipeline {
       }
       stage("build"){
           steps {
-            sh 'mvn clean compile'
+            sh 'gradle build'
           }
       }
       stage("test"){
           steps {
-            sh 'mvn test surefire-report:report;ls target/site -lat;'
+            sh 'gradle test;ls build/reports/tests/test/ -lat;'
           }
       }
       stage("deploy"){
           steps {
                 sshagent(['7d94bfc0-245f-4637-a3da-dbae19921747']) {
-                    sh 'ssh -o StrictHostKeyChecking=no -l mrzjordan 182.176.114.79 "pwd;mvn --version; cd ~/spring-petclinic;rm -rf /target;ls -lat;git pull;mvn package;ls target -lat;docker-compose restart maven"'
+                    sh 'ssh -o StrictHostKeyChecking=no -l mrzjordan 182.176.114.79 "pwd;gradle --version; cd ~/spring-petclinic;rm -rf /build;ls -lat;git pull;gradle build;ls build -lat;docker-compose restart gradle"'
                 }  
            }
       }    
    }
     post{
         success{
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './target/site/', reportFiles: 'surefire-report.html', reportName: 'Unit Test Report', reportTitles: 'Unit Test Report'])
+                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './build/reports/tests/test/', reportFiles: 'index.html', reportName: 'Unit Test Report', reportTitles: 'Unit Test Report'])
         }
      }
 }
