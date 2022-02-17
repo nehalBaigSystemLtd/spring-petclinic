@@ -24,7 +24,7 @@ pipeline {
       stage("deploy"){
           steps {
                 sshagent(['7d94bfc0-245f-4637-a3da-dbae19921747']) {
-                    sh 'ssh -o StrictHostKeyChecking=no -l mrzjordan 182.176.114.79 "pwd;gradle --version; cd ~/spring-petclinic;rm -rf /build;ls -lat;git pull;gradle build;ls build -lat;docker-compose restart gradle"'
+                    sh 'ssh -o StrictHostKeyChecking=no -l mrzjordan 182.176.114.79 "pwd;gradle --version; cd ~/spring-petclinic;rm -rf build;ls -lat;git pull;gradle build;ls build -lat;docker-compose restart gradle"'
                 }  
            }
       }    
