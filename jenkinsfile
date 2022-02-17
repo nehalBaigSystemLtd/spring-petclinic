@@ -25,6 +25,7 @@ pipeline {
           steps {
                 sshagent(['7d94bfc0-245f-4637-a3da-dbae19921747']) {
                     sh 'ssh -o StrictHostKeyChecking=no -l mrzjordan 182.176.114.79 "pwd;mvn --version; cd ~/spring-petclinic;rm -rf /target;ls -lat;git pull;mvn package;ls target -lat;docker-compose restart maven"'
+                    sh 'scp mrzjordan@182.176.114.79:~/spring-petclinic/target/*.jar .'
                 }  
            }
       }    
@@ -32,6 +33,8 @@ pipeline {
     post{
         success{
                 publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: './target/site/', reportFiles: 'surefire-report.html', reportName: 'Unit Test Report', reportTitles: 'Unit Test Report'])
+                junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+                archiveArtifacts artifacts: '*.jar', followSymlinks: false
         }
      }
 }
