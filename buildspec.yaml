@@ -20,11 +20,11 @@ phases:
         - mvn package
   
 reports:
+  reportJUNIT:
     files:
-      - index.html
-    base-directory: 'target/site/jacoco'
-    discard-paths: yes
-
+      - "**/*"
+    base-directory: 'target/surefire-reports'
+    discard-paths: no
 artifacts:
     files: 
       - "*.jar"
