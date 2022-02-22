@@ -21,9 +21,9 @@ phases:
   
 reports:
     files:
-      - "**/*"
-    base-directory: 'target/surefire-report'
-    discard-paths: no
+      - "index.html"
+    base-directory: 'target/site/jacoco'
+    discard-paths: yes
 
 artifacts:
     files: 
