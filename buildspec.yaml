@@ -23,7 +23,7 @@ reports:
     files: 
       - 'surefire-report/**/*'
     base-directory: target
-    file-format: JUNITXML
+    
 artifacts:
     files: 
       - '*.jar'
