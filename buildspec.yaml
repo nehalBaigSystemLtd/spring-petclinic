@@ -6,7 +6,7 @@ phases:
     runtime-versions:
       java: latest
   
-  pre-build:
+  pre_build:
     commands:
       - rm -rf target
   
@@ -15,7 +15,7 @@ phases:
        - mvn compile
        - mvn test surefirefire-report:report
   
-  post-build:
+  post_build:
     commands:
         - mvn package
   
