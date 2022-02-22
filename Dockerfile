@@ -7,4 +7,4 @@ RUN apt-get update && apt install sudo -y && apt install wget -y \
 export PATH && java --version \
 && sudo apt install maven -y && mvn -version
 
-CMD ls -lat && mvn --version && java -jar target/*.jar
+CMD mvn --version && java -jar /target/*.jar

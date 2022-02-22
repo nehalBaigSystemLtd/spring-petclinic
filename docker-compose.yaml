@@ -5,4 +5,11 @@ services:
     volumes:
       - '.:/jmapp'
     ports:
-      - '8080:8080'
+      - '6060:8080'
+  gradle:
+    build: ./GradleDocker/
+    volumes:
+      - '.:/jmapp'
+    ports:
+      - '4040:8080'
+  

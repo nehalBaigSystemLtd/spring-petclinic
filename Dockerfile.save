@@ -1,0 +1,4 @@
+FROM ubuntu:latest
+WORKDIR /jmapp
+EXPOSE 8080
+CMD  ls -lat && mvn --version && java -jar target/*.jar
