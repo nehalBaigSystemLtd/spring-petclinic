@@ -19,12 +19,12 @@ phases:
     commands:
         - mvn package
   
-  reports:
+reports:
     files: '**/*'
     base-directory: target/surefire-report
     file-format: JUNITXML
 
-  artifacts:
+artifacts:
     files: '*.jar'
     base-directory: target/
     discard-paths: yes
