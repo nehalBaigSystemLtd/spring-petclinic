@@ -20,7 +20,7 @@ phases:
         - mvn package
   
 reports:
-    files: 
+    files:
       - 'surefire-report/*'
     base-directory: target
 
