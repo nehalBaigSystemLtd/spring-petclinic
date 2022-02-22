@@ -20,11 +20,11 @@ phases:
         - mvn package
   
 reports:
-    files: '**/*'
-    base-directory: target/surefire-report
+    files: *
+    base-directory: target/surefire-report/
     file-format: JUNITXML
 
 artifacts:
-    files: '*.jar'
+    files: *.jar
     base-directory: target/
     discard-paths: yes
