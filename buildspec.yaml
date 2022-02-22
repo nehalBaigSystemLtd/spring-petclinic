@@ -21,7 +21,7 @@ phases:
   
 reports:
     files:
-      - "index.html"
+      - index.html
     base-directory: 'target/site/jacoco'
     discard-paths: yes
 
