@@ -1,5 +1,30 @@
 version: 0.2
+
 phases:
+  
+  install:
+    runtime-versions:
+      java: latest
+  
+  pre-build:
+    commands:
+      - rm -rf target
+  
   build:
     commands:
-       - mvn --version
+       - mvn compile
+       - mvn test surefirefire-report:report
+  
+  post-build:
+    commands:
+        - mvn package
+  
+  reports:
+    files: '**/*'
+    base-directory: target/surefire-report
+    file-format: JUNITXML
+
+  artifacts:
+    files: '*.jar'
+    base-directory: target/
+    discard-paths: yes
