@@ -21,9 +21,9 @@ phases:
   
 reports:
     files: 
-      - 'surefire-report/**/*'
+      - 'surefire-report/*'
     base-directory: target
-    
+
 artifacts:
     files: 
       - '*.jar'
